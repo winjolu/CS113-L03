@@ -69,7 +69,7 @@ public class Polynomial {
     /**
      * Clears all terms from the polynomial.
      */
-    public void clear() { //!
+    public void clear() {
         terms.clear(); //!
     }
 
@@ -81,10 +81,16 @@ public class Polynomial {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < terms.size(); i++) {
             Term t = terms.get(i);
-            if (t.getCoefficient() > 0 && i > 0) {
-                sb.append(" + ");
-            } else if (t.getCoefficient() < 0) {
-                sb.append(" - ");
+            if (i > 0) {
+                if (t.getCoefficient() > 0) {
+                    sb.append(" + ");
+                } else if (t.getCoefficient() < 0) {
+                    sb.append(" - ");
+                }
+            } else {
+                if (t.getCoefficient() < 0) {
+                    sb.append("-");
+                }
             }
             sb.append(Math.abs(t.getCoefficient()));
             if (t.getExponent() != 0) {
