@@ -1,15 +1,15 @@
-/**
- * TermTest.java : JUnit test for Term class.  Tests are organized in the strategic
- * development process for the class only, running the entire JUnit Tester does not
- * guarantee order!
- *
- * DO NOT CHANGE ANY CODE HERE! THIS WILL BE USED FOR GRADING! Definitely use this
- * as a guide to help you program Term and account for all situations. You can
- * comment code out (otherwise your code may not compile as you build the class!)
- *
- * @author  Nery Chapeton-Lamas <nchapetonLamas@miracosta.edu>
- * @version 1.0
- */
+// /**
+//  * TermTest.java : JUnit test for Term class.  Tests are organized in the strategic
+//  * development process for the class only, running the entire JUnit Tester does not
+//  * guarantee order!
+//  *
+//  * DO NOT CHANGE ANY CODE HERE! THIS WILL BE USED FOR GRADING! Definitely use this
+//  * as a guide to help you program Term and account for all situations. You can
+//  * comment code out (otherwise your code may not compile as you build the class!)
+//  *
+//  * @author  Nery Chapeton-Lamas <nchapetonLamas@miracosta.edu>
+//  * @version 1.0
+//  */
 
 
 
@@ -25,9 +25,7 @@
 //     private static final int[] COEFFICIENTS =   {0, 5, -3, 1, -1, 6, -9, 1, -1, 1, -1, 7, -2, 25, -54};
 //     private static final int[] EXPONENTS =      {3, 0,  0, 1,  1, 1,  1, 3, 5, -2, -7, 4, 13, -8, -17};
 
-//     private static int COMPARE_TO_VALUE = 3; //if this is changed, make sure to change array COMPARE_TO_VALUES
-//     private static final int[] COMPARE_TO_VALUES = {0, 1, 1, 1, 1, 1, 1, 0, -1, 1, 1, -1, -1, 1, 1};
-//     private static final int ORIGINAL_EQUALS_TEST = 0;
+//     private static int COMPARE_TO_VALUE = 3; //if this is1
 //     private static final int ORIGINAL_BEFORE_TEST = -1;
 //     //private static final int ORIGINAL_AFTER_TEST = 1; //not used
 

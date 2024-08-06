@@ -1,21 +1,21 @@
-/**
- * Polynomial.java : JUnit test for Polynomial ADT implementation.
- * Tests are organized in the strategic development process for the class only,
- * running the entire JUnit Tester does not guarantee order!
- *
- * Assuming that Term works and has no errors (make sure all TermTest tests pass!),
- * testing relies on building Term constructors, equals(), etc.
- * Make sure to build getNumTerms() first (base implementation off of the
- * LinkedList size() method, will avoid more potential errors). Same idea for getTerm()
- *
- * DO NOT CHANGE ANY CODE HERE! THIS WILL BE USED FOR GRADING! Definitely use this
- * as a guide to help you program Polynomial and account for all situations. You can
- * comment code out (otherwise your code may not compile as you build the class!)
- *  Exception to changes: Extra Credit at bottom of this file
- *
- * @author  Nery Chapeton-Lamas <nchapetonLamas@miracosta.edu>
- * @version 1.0
- */
+// /**
+//  * Polynomial.java : JUnit test for Polynomial ADT implementation.
+//  * Tests are organized in the strategic development process for the class only,
+//  * running the entire JUnit Tester does not guarantee order!
+//  *
+//  * Assuming that Term works and has no errors (make sure all TermTest tests pass!),
+//  * testing relies on building Term constructors, equals(), etc.
+//  * Make sure to build getNumTerms() first (base implementation off of the
+//  * LinkedList size() method, will avoid more potential errors). Same idea for getTerm()
+//  *
+//  * DO NOT CHANGE ANY CODE HERE! THIS WILL BE USED FOR GRADING! Definitely use this
+//  * as a guide to help you program Polynomial and account for all situations. You can
+//  * comment code out (otherwise your code may not compile as you build the class!)
+//  *  Exception to changes: Extra Credit at bottom of this file
+//  *
+//  * @author  Nery Chapeton-Lamas <nchapetonLamas@miracosta.edu>
+//  * @version 1.0
+//  */
 
 
 
