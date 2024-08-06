@@ -1,3 +1,6 @@
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class Term implements Comparable<Term>, Cloneable {
     private static final int DEFAULT_COEFFICIENT = 1;
     private static final int DEFAULT_EXPONENT = 1;
@@ -5,96 +8,104 @@ public class Term implements Comparable<Term>, Cloneable {
     private int coefficient;
     private int exponent;
 
-    //constructors
+    // Default constructor
     public Term() {
         this.coefficient = DEFAULT_COEFFICIENT;
         this.exponent = DEFAULT_EXPONENT;
     }
 
+    // Constructor with coefficient and exponent
     public Term(int coefficient, int exponent) {
         this.coefficient = coefficient;
         this.exponent = exponent;
     }
 
+    // Constructor that parses a string representation of a term, regex for simplicity's sake
     public Term(String term) {
-        if (term.equals("")) {
-            this.coefficient = 0;
-            this.exponent = 0;
-        } else if (!term.contains("x")) {
-            this.coefficient = Integer.parseInt(term);
-            this.exponent = 0;
-        } else if (!term.contains("^") && term.contains("x")) {
-            if(term.equals("+x")) {
-                this.coefficient = 1;
-                this.exponent = 1;
-            } else if(term.equals("-x")) {
-                this.coefficient = -1;
-                this.exponent = 1;
+        // Regex to match terms of the form [+-]?(\d+)x(\^\d+)? or [+-]?\d+
+        Pattern pattern = Pattern.compile("([+-]?\\d*)x(\\^(\\d+))?|([+-]?\\d+)");
+        Matcher matcher = pattern.matcher(term.trim());
+
+        if (matcher.matches()) {
+            String coeffStr = matcher.group(1);
+            String expStr = matcher.group(3);
+            String constantStr = matcher.group(4);
+
+            if (constantStr != null) {
+                // Handle constant term
+                this.coefficient = Integer.parseInt(constantStr);
+                this.exponent = 0;
             } else {
-                String coefficientTerm = term.substring(0, term.length() - 1);
-                this.coefficient = Integer.parseInt(coefficientTerm);
-                this.exponent = 1;
+                // Handle variable term
+                if (coeffStr.equals("") || coeffStr.equals("+")) {
+                    this.coefficient = 1;
+                } else if (coeffStr.equals("-")) {
+                    this.coefficient = -1;
+                } else {
+                    this.coefficient = Integer.parseInt(coeffStr);
+                }
+
+                if (expStr == null) {
+                    this.exponent = 1;
+                } else {
+                    this.exponent = Integer.parseInt(expStr);
+                }
             }
-        } else if (term.contains("^") && term.contains("x")) {
-            String coefficientTerm = term.substring(0, term.indexOf("x"));
-            String exponentTerm = term.substring(term.indexOf("^") + 1);
-            this.exponent = Integer.parseInt(exponentTerm);
-            if(coefficientTerm.equals("+")) {
-                this.coefficient = 1;
-            } else if(coefficientTerm.equals("-")) {
-                this.coefficient = -1;
-            } else {
-                this.coefficient = Integer.parseInt(coefficientTerm);
-            }
+        } else {
+            throw new IllegalArgumentException("Invalid term format: " + term);
         }
     }
 
+    // Copy constructor
     public Term(Term other) {
         this.coefficient = other.coefficient;
         this.exponent = other.exponent;
     }
 
-    //getters
+    // Getter for coefficient
     public int getCoefficient() {
         return this.coefficient;
     }
 
+    // Getter for exponent
     public int getExponent() {
         return this.exponent;
     }
 
-    //setters
+    // Setter for coefficient
     public void setCoefficient(int coefficient) {
         this.coefficient = coefficient;
     }
 
+    // Setter for exponent
     public void setExponent(int exponent) {
         this.exponent = exponent;
     }
 
+    // Setter for both coefficient and exponent
     public void setAll(int coefficient, int exponent) {
         this.coefficient = coefficient;
         this.exponent = exponent;
     }
 
-    //toString
+    // Returns a string representation of the term
     public String toString() {
-        if(this.coefficient == 0) {
+        if (this.coefficient == 0) {
             return "0";
-        } else if(this.exponent == 0) {
+        } else if (this.exponent == 0) {
             return "" + this.coefficient;
-        } else if(this.exponent == 1) {
-            if(this.coefficient == 1) {
+        } else if (this.exponent == 1) {
+            if (this.coefficient == 1) {
                 return "x";
-            } else if(this.coefficient == -1) {
+            } else if (this.coefficient == -1) {
                 return "-x";
             } else {
                 return this.coefficient + "x";
             }
         } else {
-            if(this.coefficient == 1) {
+            if (this.coefficient == 1) {
                 return "x^" + this.exponent;
-            } else if(this.coefficient == -1) {
+            } else if (this.coefficient == -1) {
                 return "-x^" + this.exponent;
             } else {
                 return this.coefficient + "x^" + this.exponent;
@@ -102,25 +113,29 @@ public class Term implements Comparable<Term>, Cloneable {
         }
     }
 
+    // Compares this term to another term based on their exponents in descending order
     @Override
     public int compareTo(Term term) {
-        return this.exponent - term.exponent;
+        return term.exponent - this.exponent; // Descending order
     }
 
+    // Checks if this term is equal to another object
     @Override
     public boolean equals(Object obj) {
-        if(obj instanceof Term) {
+        if (obj instanceof Term) {
             Term other = (Term) obj;
             return this.coefficient == other.coefficient && this.exponent == other.exponent;
         }
         return false;
     }
 
+    // Returns a hash code for this term
     @Override
     public int hashCode() {
         return coefficient + exponent;
     }
 
+    // Clones this term
     @Override
     protected Object clone() {
         return new Term(this.coefficient, this.exponent);
