@@ -87,33 +87,61 @@ public class Term implements Comparable<Term> {
 
 
     //toString
-    public String toString() {
-        String term = "";
-        if(this.coefficient == 0) {
-            return "";
-        } else if(this.exponent == 0 && this.coefficient > 0) {
-            return "" + this.coefficient;
-        } else if (this.exponent == 0 && this.coefficient < 0) {
-            return "" + this.coefficient;
-        } else if(this.exponent == 1 && this.coefficient == 1) {
-            return "+x";
-        } else if (this.exponent == 1 && this.coefficient == -1) {
-            return "-x";
-        } else if (this.exponent == 1 && this.coefficient > 1) {
-            return "+" + this.coefficient + "x";
-         } else if (this.exponent == 1 && this.coefficient < 1) {
-            return "" + this.coefficient + "x";
-        } else if (this.coefficient == 1) {
-            return "+x^" + this.exponent;
-        } else if (this.coefficient == -1) {
-            return "-x^" + this.exponent;
-        } else if (this.coefficient > 1) {
-            return "+" + "x^" + this.exponent;
-        } else if (this.coefficient < 1) {
-            return "" + "x^" + this.exponent;
+
+    // from video:
+    // public String toString() {
+    //     String term = "";
+    //     if(this.coefficient == 0) {
+    //         return "";
+    //     } else if(this.exponent == 0 && this.coefficient > 0) {
+    //         return "" + this.coefficient;
+    //     } else if (this.exponent == 0 && this.coefficient < 0) {
+    //         return "" + this.coefficient;
+    //     } else if(this.exponent == 1 && this.coefficient == 1) {
+    //         return "+x";
+    //     } else if (this.exponent == 1 && this.coefficient == -1) {
+    //         return "-x";
+    //     } else if (this.exponent == 1 && this.coefficient > 1) {
+    //         return "+" + this.coefficient + "x";
+    //      } else if (this.exponent == 1 && this.coefficient < 1) {
+    //         return "" + this.coefficient + "x";
+    //     } else if (this.coefficient == 1) {
+    //         return "+x^" + this.exponent;
+    //     } else if (this.coefficient == -1) {
+    //         return "-x^" + this.exponent;
+    //     } else if (this.coefficient > 1) {
+    //         return "+" + "x^" + this.exponent;
+    //     } else if (this.coefficient < 1) {
+    //         return "" + "x^" + this.exponent;
+    //     }
+    //     return term;
+    // }
+
+// refactor:
+public String toString() {
+    if(this.coefficient == 0) {
+        return "0"; 
+    } else if(this.exponent == 0) {
+        return "" + this.coefficient; 
+    } else if(this.exponent == 1) {
+        if(this.coefficient == 1) {
+            return "x"; 
+        } else if(this.coefficient == -1) {
+            return "-x"; 
+        } else {
+            return this.coefficient + "x"; 
         }
-        return term;
+    } else {
+        if(this.coefficient == 1) {
+            return "x^" + this.exponent; 
+        } else if(this.coefficient == -1) {
+            return "-x^" + this.exponent; 
+        } else {
+            return this.coefficient + "x^" + this.exponent; 
+        }
     }
+}
+
 
     //compareTo
     public int compareTo(Term term) {
