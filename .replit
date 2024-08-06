@@ -1,5 +1,5 @@
-compile = "javac -classpath .:target/dependency/* -d . $(find . -type f -name '*.java')"
-run = ["java", "-classpath", ".:target/dependency/*", "Main"]
+compile = "nix-env -iA nixpkgs.openjdk && javac -classpath .:target/dependency/* -d . $(find . -type f -name '*.java')"
+run = "java -classpath .:target/dependency/* Main"
 
 entrypoint = "Main.java"
 hidden = ["**/*.class"]
@@ -21,12 +21,15 @@ language = "java"
 
 [nix]
 channel = "stable-21_11"
+pkgs = [
+  "openjdk"
+]
 
 [debugger]
 support = true
 
 [debugger.compile]
-command = "javac -classpath .:/run_dir/junit-4.12.jar:target/dependency/* -g -d . $(find . -type f -name '*.java')"
+command = "nix-env -iA nixpkgs.openjdk && javac -classpath .:/run_dir/junit-4.12.jar:target/dependency/* -g -d . $(find . -type f -name '*.java')"
 
 [debugger.interactive]
 transport = "localhost:0"
