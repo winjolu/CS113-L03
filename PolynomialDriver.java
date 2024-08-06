@@ -22,6 +22,9 @@ public class PolynomialDriver {
                     displayAdditionResult();
                     break;
                 case 4:
+                    displayPolynomials(); //!
+                    break;
+                case 5:
                     exit = true;
                     break;
                 default:
@@ -37,13 +40,14 @@ public class PolynomialDriver {
         System.out.println("1. Edit the first polynomial");
         System.out.println("2. Edit the second polynomial");
         System.out.println("3. Display the result of adding the first and second polynomial");
-        System.out.println("4. Exit");
+        System.out.println("4. Display stored polynomials"); //!
+        System.out.println("5. Exit");
         System.out.print("Enter your choice: ");
     }
 
     private static int getUserChoice() {
         while (!scanner.hasNextInt()) {
-            System.out.print("Invalid input. Enter a number between 1 and 4: ");
+            System.out.print("Invalid input. Enter a number between 1 and 5: ");
             scanner.next();
         }
         return scanner.nextInt();
@@ -127,4 +131,9 @@ public class PolynomialDriver {
         System.out.println("Second polynomial: " + polynomial2);
         System.out.println("Sum: " + sum);
     }
+
+    private static void displayPolynomials() { //!
+        System.out.println("First polynomial: " + polynomial1); //!
+        System.out.println("Second polynomial: " + polynomial2); //!
+    } //!
 }
