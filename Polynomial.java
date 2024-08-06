@@ -79,20 +79,25 @@ public class Polynomial {
             return "0"; // handle case when polynomial is zero
         }
         StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < terms.size(); i++) {
-            Term t = terms.get(i);
-            if (i > 0) {
+        boolean isFirstTerm = true; //!
+        for (Term t : terms) {
+            if (t.getCoefficient() == 0) {
+                continue; // Skip terms with a coefficient of 0
+            }
+            if (!isFirstTerm) { //!
                 if (t.getCoefficient() > 0) {
                     sb.append(" + ");
-                } else if (t.getCoefficient() < 0) {
+                } else {
                     sb.append(" - ");
+                    sb.append(Math.abs(t.getCoefficient()));
                 }
             } else {
                 if (t.getCoefficient() < 0) {
                     sb.append("-");
                 }
+                sb.append(Math.abs(t.getCoefficient()));
+                isFirstTerm = false; //!
             }
-            sb.append(Math.abs(t.getCoefficient()));
             if (t.getExponent() != 0) {
                 sb.append("x");
                 if (t.getExponent() != 1) {
@@ -103,4 +108,3 @@ public class Polynomial {
         return sb.toString();
     }
 }
-// !
