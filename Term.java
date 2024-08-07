@@ -20,7 +20,7 @@ public class Term implements Comparable<Term>, Cloneable {
         this.exponent = exponent;
     }
 
-    // Constructor that parses a string representation of a term, regex for simplicity's sake
+    // Constructor that parses a string representation of a term
     public Term(String term) {
         // Regex to match terms of the form [+-]?(\d+)x(\^\d+)? or [+-]?\d+
         Pattern pattern = Pattern.compile("([+-]?\\d*)x(\\^(\\d+))?|([+-]?\\d+)");

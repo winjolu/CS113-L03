@@ -85,7 +85,7 @@ public class PolynomialDriver {
     private static void addTerms(Polynomial poly) {
         while (true) {
             try {
-                System.out.print("Enter term (e.g., 3x^2 or -4x or 5) or type 'done' to finish: ");
+                System.out.print("Enter term (e.g., 3x^2 or -4x or 5): ");
                 String termStr = scanner.nextLine();
                 if (termStr.equalsIgnoreCase("done")) {
                     break;

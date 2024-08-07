@@ -92,13 +92,13 @@ public class Polynomial {
             return "0";
         }
 
-        StringBuilder sb = new StringBuilder(); //yay SB!
-        boolean isFirstTerm = true; //doesn't append '+' to first term
-        for (Term t : this.polynomialList) { //iteration time
+        StringBuilder sb = new StringBuilder();
+        boolean isFirstTerm = true;
+        for (Term t : this.polynomialList) {
             if (!isFirstTerm || t.getCoefficient() < 0) {
                 sb.append(t.getCoefficient() > 0 ? " + " : " - ");
             }
-            sb.append(Math.abs(t.getCoefficient())); //use absolute value of coefficient to handle sign correctly
+            sb.append(Math.abs(t.getCoefficient()));
             if (t.getExponent() != 0) {
                 sb.append("x");
                 if (t.getExponent() != 1) {
